@@ -98,6 +98,9 @@ body.home { min-height: 100vh; display: flex; flex-direction: column; }
   letter-spacing: 0.04em;
   object-fit: cover;
 }
+figure.photo { margin: 0; }
+.avatar.photo { position: relative; overflow: hidden; }
+.avatar.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .profile_inner h1 {
   margin: 1.25rem 0 0.25rem;
@@ -115,16 +118,58 @@ body.home { min-height: 100vh; display: flex; flex-direction: column; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.1rem;
-  margin-top: 1.5rem;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
 }
 .icons a {
+  position: relative;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   color: var(--muted);
-  transition: color 0.2s ease, transform 0.2s ease;
+  background: transparent;
+  box-shadow: 0 0 0 2px transparent;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .icons a:hover,
-.icons a:focus-visible { color: var(--accent); transform: translateY(-1px); outline: none; }
+.icons a:focus-visible {
+  color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent);
+  transform: translateY(-2px) scale(1.08);
+  outline: none;
+  z-index: 2;
+}
+.icons a::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.icons a:first-child::after { left: 0; transform: none; }
+.icons a:last-child::after { left: auto; right: 0; transform: none; }
+.icons a:hover::after,
+.icons a:focus-visible::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .icons a, .icons a::after { transition: none; }
+  .icons a:hover, .icons a:focus-visible { transform: none; }
+}
 .icons svg { width: 22px; height: 22px; display: block; }
 
 .buttons {
@@ -187,7 +232,7 @@ body.home { min-height: 100vh; display: flex; flex-direction: column; }
 .page h3 { margin: 0 0 0.25rem; font-size: 1.0625rem; font-weight: 600; line-height: 1.4; }
 .page p { margin: 0 0 0.5rem; }
 
-.item { margin: 0 0 1.75rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
+.item { margin: 0 0 1.75rem; padding: 0.25rem 1.25rem; border-inline: 2px solid var(--accent); }
 .item .kind { margin: 0 0 0.15rem; color: var(--muted); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .item .authors, .item .venue { color: var(--muted); font-size: 0.9375rem; }
 .item-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 0.4rem; }
@@ -207,7 +252,7 @@ summary { cursor: pointer; color: var(--muted); width: fit-content; }
 summary:hover { color: var(--accent); }
 details p { margin-top: 0.5rem; }
 
-.note { border-left: 2px solid var(--accent); color: var(--muted); font-size: 0.9375rem; margin-top: 2rem; padding: 0.9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+.note { color: var(--muted); font-size: 0.9375rem; margin-top: 2rem; padding: 0.9rem 1.25rem; background: var(--surface); border: 1px solid var(--rule); border-inline: 2px solid var(--accent); border-radius: 8px; }
 
 .tl { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; margin-bottom: 1.25rem; }
 .tl-date { margin: 0; color: var(--muted); font-size: 0.875rem; }
@@ -219,7 +264,22 @@ details p { margin-top: 0.5rem; }
 .contact-list span { color: var(--muted); }
 .contact-list .muted { color: var(--muted); }
 
+/* Open Science */
+.intro { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.5rem; }
+.intro p { margin: 0; flex: 1; }
+.intro .photo { flex: 0 0 8rem; }
+.intro .photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+}
+.item .meta { margin: 0 0 0.35rem; color: var(--muted); font-size: 0.8125rem; letter-spacing: 0.02em; }
+
 @media (max-width: 36rem) {
+  .intro { flex-direction: column-reverse; align-items: flex-start; }
   .tl, .contact-list li { grid-template-columns: 1fr; gap: 0.1rem; }
   .profile_inner h1 { font-size: 1.6rem; }
 }
