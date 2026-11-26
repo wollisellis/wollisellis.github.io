@@ -313,3 +313,28 @@ details p { margin-top: 0.5rem; }
 .language-switch a[aria-current="page"] { opacity: 1; background: var(--accent-soft); }
 .language-switch a:hover, .language-switch a:focus-visible { opacity: 1; background: var(--accent-soft); }
 .header-controls .theme-toggle, .corner .theme-toggle { flex-shrink: 0; }
+
+/* Review refinements: touch targets, keyboard focus and compact mobile navigation. */
+.corner { position: absolute; }
+.language-switch a { width: 40px; height: 40px; }
+.theme-toggle { min-height: 40px; }
+.btn-sub { display: inline-flex; align-items: center; min-height: 40px; }
+.icon-caption { display: none; }
+.buttons a:focus-visible, .topbar nav a:focus-visible, .btn-sub:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+@media (max-width: 36rem) {
+  .profile { padding-top: 5rem; }
+  .topbar nav[aria-label="Main"], .topbar nav[aria-label="Principal"] {
+    flex-wrap: nowrap; justify-content: space-between; gap: 0.35rem; font-size: 0.8125rem;
+  }
+  .topbar nav[aria-label="Main"] a, .topbar nav[aria-label="Principal"] a {
+    display: inline-flex; align-items: center; min-height: 44px; flex: 0 0 auto;
+  }
+  .icons { row-gap: 1.5rem; margin-bottom: 1.5rem; }
+  .icons .icon-caption {
+    display: block; position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+    font-size: 0.6875rem; line-height: 1.3; white-space: nowrap; color: var(--muted);
+  }
+  .icons a::after { display: none; }
+}
