@@ -283,3 +283,24 @@ details p { margin-top: 0.5rem; }
   .tl, .contact-list li { grid-template-columns: 1fr; gap: 0.1rem; }
   .profile_inner h1 { font-size: 1.6rem; }
 }
+
+/* Explicit language links. Language selection never changes the root default. */
+.language-switch, .header-controls, .corner { display: flex; align-items: center; gap: 0.75rem; }
+.language-switch { font-size: 0.8125rem; white-space: nowrap; gap: 0.35rem; }
+.language-switch a { color: var(--muted); padding: 0.2rem 0.1rem; }
+.language-switch a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+.language-switch a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.language-switch span { color: var(--muted); }
+.page, .profile_inner { overflow-wrap: anywhere; }
+@media (max-width: 36rem) {
+  .topbar { gap: 0.75rem; }
+  .topbar nav[aria-label="Main"], .topbar nav[aria-label="Principal"] { order: 3; width: 100%; gap: 0.9rem; }
+  .header-controls { margin-left: auto; }
+}
+
+@media (max-width: 36rem) {
+  .icons { display: grid; grid-template-columns: repeat(4, 44px); column-gap: 0.6rem; row-gap: 2.5rem; margin-bottom: 3rem; }
+  .icons a::after { white-space: normal; width: max-content; max-width: 13rem; }
+  .icons a:nth-child(4n + 1)::after { left: 0; right: auto; transform: none; }
+  .icons a:nth-child(4n)::after { left: auto; right: 0; transform: none; }
+}

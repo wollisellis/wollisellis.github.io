@@ -12,7 +12,8 @@
     root.setAttribute("data-theme", theme);
     var labels = document.querySelectorAll("[data-theme-label]");
     for (var i = 0; i < labels.length; i++) {
-      labels[i].textContent = theme === "dark" ? "Light" : "Dark";
+      var pt = root.lang === "pt-BR";
+      labels[i].textContent = theme === "dark" ? (pt ? "Claro" : "Light") : (pt ? "Escuro" : "Dark");
     }
   }
 
