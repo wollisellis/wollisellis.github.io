@@ -304,3 +304,12 @@ details p { margin-top: 0.5rem; }
   .icons a:nth-child(4n + 1)::after { left: 0; right: auto; transform: none; }
   .icons a:nth-child(4n)::after { left: auto; right: 0; transform: none; }
 }
+
+/* Discreet language flags stay alongside the theme control. */
+.corner, .header-controls { flex-direction: row; flex-wrap: nowrap; gap: 0.65rem; }
+.language-switch { display: inline-flex; flex-direction: row; flex-wrap: nowrap; gap: 0.15rem; width: auto; }
+.language-switch a { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border-radius: 50%; opacity: 0.55; text-decoration: none; }
+.language-switch a span { font-size: 1rem; line-height: 1; }
+.language-switch a[aria-current="page"] { opacity: 1; background: var(--accent-soft); }
+.language-switch a:hover, .language-switch a:focus-visible { opacity: 1; background: var(--accent-soft); }
+.header-controls .theme-toggle, .corner .theme-toggle { flex-shrink: 0; }
